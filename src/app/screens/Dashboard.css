@@ -1,0 +1,481 @@
+/* Dashboard screen (from dandi) */
+.dash-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dash-bg {
+  position: absolute;
+  inset: 0;
+  background: url("/bg.png") center center / cover no-repeat;
+  z-index: 0;
+}
+
+.dash-scroll {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 120px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.dash-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.dash-content {
+  padding: 78px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dash-greeting-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-hi {
+  font-family: "Donegal One", serif;
+  font-size: 16px;
+  color: #345900;
+  margin: 0;
+  line-height: normal;
+}
+
+.dash-headline {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #1e1e1e;
+  margin: 0;
+  line-height: 1.25;
+  max-width: 230px;
+}
+
+.dash-section-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #1e1e1e;
+  margin: 0 0 12px;
+}
+
+.dash-vitals {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+.dash-vitals::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tighter overlap than dandi so 4 tiles fit in 393px frame (dandi uses 402px) */
+.dash-vital-tile {
+  position: relative;
+  flex-shrink: 0;
+  width: 102px;
+  height: 95px;
+  border-radius: 24px;
+  padding: 16px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-right: -19px;
+  color: #f3e7d7;
+  cursor: grab;
+}
+.dash-vital-tile:active {
+  cursor: grabbing;
+}
+
+.dash-vital-label {
+  display: block;
+  width: 100%;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  line-height: normal;
+  text-align: left;
+}
+
+.dash-vital-value {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 4px;
+  width: 100%;
+  max-width: 71px;
+}
+
+.dash-vital-num {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.dash-vital-unit {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.dash-vital-unit--small {
+  font-size: 9px;
+}
+
+.dash-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dash-card {
+  background: #f1f6ea;
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.dash-card-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000;
+  margin: 0;
+  line-height: normal;
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-card-body {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+
+.dash-card-footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dash-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dash-tag {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #345900;
+  background: #f3e7d7;
+  border: 1px solid #345900;
+  border-radius: 20px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.dash-chevron-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dash-nav-wrap {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 362px;
+}
+
+.dash-nav-pill {
+  width: 362px;
+  height: 77px;
+  background: #f7b3cc;
+  backdrop-filter: blur(48px);
+  border-radius: 111px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dash-nav-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.dash-nav-btn-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dash-nav-icon {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+}
+
+/* AI card */
+.ai-card {
+  background: linear-gradient(136deg, #fefefe 2.6%, #f7b3cc 70%, #f66097 104%);
+  border-radius: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ai-card-inner {
+  position: relative;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-close-btn--abs {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.ai-top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.ai-card-flower-lg {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.ai-card-title-lg {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #1e1e1e;
+  margin: 0;
+  line-height: normal;
+  align-self: flex-start;
+}
+
+.ai-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ai-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ai-suggestion-chip {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 0 14px;
+  height: 40px;
+  cursor: pointer;
+  text-align: left;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ai-typing-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.chat-bubble.chat-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.chat-bubble.chat-typing span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #666;
+  animation: typingDot 1.2s infinite ease-in-out;
+}
+.chat-bubble.chat-typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.chat-bubble.chat-typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.ai-response-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-response-text {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1e1e1e;
+  line-height: 1.55;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  padding: 10px 12px;
+  max-height: 100px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.ai-response-text::-webkit-scrollbar {
+  display: none;
+}
+
+.ai-back-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.ai-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f3e7d7;
+  border: 1px solid #000;
+  border-radius: 95px;
+  padding: 0 12px;
+  height: 44px;
+  gap: 8px;
+}
+
+.ai-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: #000;
+  line-height: normal;
+}
+
+.ai-input::placeholder {
+  color: #000;
+  opacity: 0.6;
+}
+
+.ai-send-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

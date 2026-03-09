@@ -1,95 +1,104 @@
 import { useState } from "react";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import IPhone1652 from "../imports/IPhone1652";
-import IPhone1653 from "../imports/IPhone1653";
-import { SleepExpandedCard } from "./components/SleepExpandedCard";
-import { BodyTempExpandedCard } from "./components/BodyTempExpandedCard";
-import { GlucoseExpandedCard } from "./components/GlucoseExpandedCard";
+import { AnimatePresence, motion } from "motion/react";
+import Home from "./screens/Home";
+import Onboard1 from "./screens/Onboard1";
+import Onboard2 from "./screens/Onboard2";
+import Onboard3 from "./screens/Onboard3";
+import Onboard4 from "./screens/Onboard4";
+import Connect from "./screens/Connect";
+import Dashboard from "./screens/Dashboard";
 
-type ActiveScreen = "dashboard" | "heartRate" | "sleep" | "bodyTemp" | "glucose";
+const SCREENS = ["home", "onboard1", "onboard2", "onboard3", "onboard4", "connect", "dashboard"] as const;
+type ScreenName = (typeof SCREENS)[number];
+
+const slideVariants = {
+  enter: (dir: number) => ({
+    y: dir > 0 ? 852 : -852,
+    opacity: 0,
+  }),
+  center: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+  exit: (dir: number) => ({
+    y: dir > 0 ? -852 : 852,
+    opacity: 0,
+    transition: { duration: 0.4, ease: [0.55, 0, 0.78, 0] as const },
+  }),
+};
+
+const dashVariants = {
+  enter: { opacity: 1, y: 0 },
+  center: { opacity: 1, y: 0, transition: { duration: 0.01 } },
+  exit: { opacity: 0, y: -40, transition: { duration: 0.4, ease: [0.55, 0, 0.78, 0] as const } },
+};
+
+const screenLayerClass = "absolute inset-0 flex items-center justify-center z-[1]";
+const screenBgStyle = { background: "url(/bg.png) center center / cover no-repeat" };
 
 export default function App() {
-  const [activeScreen, setActiveScreen] = useState<ActiveScreen>("dashboard");
-  const [isExpanding, setIsExpanding] = useState(false);
+  const [screenIndex, setScreenIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const handleCardClick = (screen: ActiveScreen) => {
-    setIsExpanding(true);
-    setActiveScreen(screen);
-  };
+  function navigate(to: ScreenName) {
+    const nextIndex = SCREENS.indexOf(to);
+    setDirection(nextIndex > screenIndex ? 1 : -1);
+    setScreenIndex(nextIndex);
+  }
 
-  const handleBackToDashboard = () => {
-    setActiveScreen("dashboard");
-    setIsExpanding(false);
-  };
+  const screen = SCREENS[screenIndex];
 
   return (
     <div className="size-full flex items-center justify-center bg-zinc-900 overflow-hidden font-['Instrument_Sans',sans-serif]">
       <div className="relative w-[393px] h-[852px] rounded-[40px] shadow-2xl overflow-hidden ring-8 ring-black app-bg">
-        <LayoutGroup>
-        <AnimatePresence initial={false}>
-          {activeScreen === "dashboard" ? (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <IPhone1652 
-                onHeartRateClick={() => handleCardClick("heartRate")}
-                onSleepClick={() => handleCardClick("sleep")}
-                onBodyTempClick={() => handleCardClick("bodyTemp")}
-                onGlucoseClick={() => handleCardClick("glucose")}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={screen}
+            className={screen === "dashboard" ? "absolute inset-0" : screenLayerClass}
+            style={screen !== "dashboard" ? screenBgStyle : undefined}
+            custom={direction}
+            variants={screen === "dashboard" ? dashVariants : slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            {screen === "home" && (
+              <Home onGetStarted={() => navigate("onboard1")} />
+            )}
+            {screen === "onboard1" && (
+              <Onboard1
+                onBack={() => navigate("home")}
+                onNext={() => navigate("onboard2")}
               />
-            </motion.div>
-          ) : activeScreen === "heartRate" ? (
-            <motion.div
-              key="heartRate"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <IPhone1653 onHeartRateClick={handleBackToDashboard} isExpanding={isExpanding} />
-            </motion.div>
-          ) : activeScreen === "sleep" ? (
-            <motion.div
-              key="sleep"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <SleepExpandedCard onBack={handleBackToDashboard} isExpanding={isExpanding} />
-            </motion.div>
-          ) : activeScreen === "bodyTemp" ? (
-            <motion.div
-              key="bodyTemp"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <BodyTempExpandedCard onBack={handleBackToDashboard} isExpanding={isExpanding} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="glucose"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <GlucoseExpandedCard onBack={handleBackToDashboard} isExpanding={isExpanding} />
-            </motion.div>
-          )}
+            )}
+            {screen === "onboard2" && (
+              <Onboard2
+                onBack={() => navigate("onboard1")}
+                onNext={() => navigate("onboard3")}
+              />
+            )}
+            {screen === "onboard3" && (
+              <Onboard3
+                onBack={() => navigate("onboard2")}
+                onNext={() => navigate("onboard4")}
+              />
+            )}
+            {screen === "onboard4" && (
+              <Onboard4
+                onBack={() => navigate("onboard3")}
+                onFinish={() => navigate("connect")}
+              />
+            )}
+            {screen === "connect" && (
+              <Connect
+                onBack={() => navigate("onboard4")}
+                onFinished={() => navigate("dashboard")}
+              />
+            )}
+            {screen === "dashboard" && <Dashboard />}
+          </motion.div>
         </AnimatePresence>
-        </LayoutGroup>
       </div>
     </div>
   );

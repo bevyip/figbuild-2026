@@ -1,0 +1,217 @@
+/* Back button (shared by onboarding + connect) */
+.back-btn {
+  position: absolute;
+  top: 52px;
+  left: 24px;
+  z-index: 30;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 243, 227, 0.85);
+  backdrop-filter: blur(6px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.back-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Onboard 1 card */
+.ob1-card {
+  position: relative;
+  z-index: 10;
+  width: 362px;
+  background: #fff3e3;
+  border-radius: 24px;
+  padding: 21px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ob1-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ob1-welcome {
+  font-family: "Donegal One", serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #345900;
+  line-height: normal;
+  margin: 0;
+}
+
+.ob1-subtitle {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000;
+  line-height: normal;
+  margin: 0;
+}
+
+.ob1-body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.ob1-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ob1-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dee5ff;
+}
+
+.ob1-dot--active {
+  width: 10px;
+  height: 10px;
+  background: #3d3b8e;
+}
+
+.ob1-question-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.ob1-question {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #000;
+  line-height: normal;
+  margin: 0;
+}
+
+.ob1-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.ob1-option {
+  width: 100%;
+  padding: 12px;
+  background: #f3e7d7;
+  border: 1px solid rgba(0, 0, 0, 0.62);
+  border-radius: 95px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+  outline: none;
+}
+
+.ob1-option--selected {
+  background: #f7b3cc;
+  border-color: #f7b3cc;
+}
+
+.ob1-option:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.ob1-next {
+  width: 100%;
+  margin-top: 2px;
+}
+
+/* Primary button (Next/Finish on onboarding) */
+.ob1-next.btn-primary,
+.btn-primary.ob1-next {
+  padding: 14px;
+  background: #f7b3cc;
+  border: none;
+  border-radius: 95px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+}
+
+/* Onboard 2 card */
+.ob2-card {
+  position: relative;
+  z-index: 10;
+  width: 362px;
+  background: #fff3e3;
+  border-radius: 24px;
+  padding: 26px 20px;
+}
+
+/* Connect screen */
+.connect-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  overflow: hidden;
+}
+
+.connect-ring-video {
+  width: 340px;
+  height: auto;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.connect-btn {
+  width: 322px;
+  padding: 14px 52px;
+  background: #f1f6ea;
+  border: 1px solid #f7b3cc;
+  border-radius: 95px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  transition: background-color 0.18s ease;
+  flex-shrink: 0;
+}
+
+.connect-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(247, 179, 204, 0.5);
+}
+
+.connect-flower {
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+  pointer-events: none;
+  margin-left: 130px;
+  margin-top: 40px;
+}

@@ -1,0 +1,98 @@
+/* Home screen card (from dandi) */
+.home-main-card {
+  position: relative;
+  z-index: 10;
+  width: 365px;
+  background: #fff3e3;
+  border-radius: 24px;
+  padding: 66px 29px;
+}
+
+.home-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.home-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.home-dandi-title {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: 130px;
+  line-height: 0.88;
+  letter-spacing: -10px;
+  color: #000;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.home-subtitle {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  color: #000;
+  text-align: center;
+  width: 100%;
+}
+
+.home-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.home-btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: #f7b3cc;
+  border: none;
+  border-radius: 95px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.18s ease;
+  outline: none;
+}
+
+.home-btn-primary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(247, 179, 204, 0.6);
+}
+
+.home-btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background: #f3e7d7;
+  border: 1px solid rgba(0, 0, 0, 0.62);
+  border-radius: 95px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.18s ease;
+  outline: none;
+}
+
+.home-btn-secondary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
